@@ -43,7 +43,7 @@ const relatedTools = data.proprietary.filter((other) => {
 
 <Layout title={`Åpne alternativer til ${tool.name}`}>
   <div class="back">
-    <a href="/">← tilbake</a>
+    <a href={import.meta.env.BASE_URL}>← tilbake</a>
   </div>
 
   <div class="header">
@@ -57,7 +57,7 @@ const relatedTools = data.proprietary.filter((other) => {
         Se også:
         {relatedTools.map((r, i) => (
           <>
-            <a href={`/${r.slug}`}>{r.name}</a>
+            <a href={`${import.meta.env.BASE_URL}/${r.slug}`}>{r.name}</a>
             {i < relatedTools.length - 1 ? ", " : ""}
           </>
         ))}

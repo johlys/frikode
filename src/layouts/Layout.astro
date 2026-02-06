@@ -20,7 +20,7 @@ const { title = "Open Source Alternatives" } = Astro.props;
 	</head>
 	<body>
 		<header>
-			<a href="/" class="site-title">Alternativ til</a>
+			<a href={import.meta.env.BASE_URL} class="site-title">Alternativ til</a>
 			<nav>
 				<a
 					href="https://github.com/johlys/frivare"

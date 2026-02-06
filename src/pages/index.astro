@@ -27,7 +27,7 @@ const sortedCategories = Object.keys(categories).sort();
 				<h2 class="category-label">{category}</h2>
 				<div class="grid">
 					{categories[category].map((tool) => (
-						<a href={`/${tool.slug}`} class="card">
+						<a href={`${import.meta.env.BASE_URL}/${tool.slug}`} class="card">
 							<span class="card-name">{tool.name}</span>
 							<span class="card-count">
 								{tool.alternatives.length} alternativ
