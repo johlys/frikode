@@ -1,11 +1,107 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import data from '../data/alternatives.json';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const tools = data.proprietary;
+
+const categories = tools.reduce((acc: Record<string, typeof tools>, tool) => {
+  if (!acc[tool.category]) acc[tool.category] = [];
+  acc[tool.category].push(tool);
+  return acc;
+}, {});
+
+const sortedCategories = Object.keys(categories).sort();
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Open Source Alternatives">
+  <div class="intro">
+    <p>
+		Proprietær programvare du sannsynligvis bruker, og åpne kildekodealternativer du kan bruke i stedet.
+    </p>
+  </div>
+
+  {sortedCategories.map((category) => (
+    <section class="category">
+      <h2 class="category-label">{category}</h2>
+      <div class="grid">
+        {categories[category].map((tool) => (
+          <a href={`/${tool.slug}`} class="card">
+            <span class="card-name">{tool.name}</span>
+            <span class="card-count">{tool.alternatives.length} alternativ</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
 </Layout>
+
+<style>
+  .intro {
+    margin-bottom: 2.5rem;
+    max-width: 42rem;
+  }
+
+  .intro p {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .category {
+    margin-bottom: 2rem;
+  }
+
+  .category-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 0;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: background 0.1s;
+    margin-top: -1px;
+    margin-left: -1px;
+  }
+
+  .card:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .card:hover .card-count {
+    color: var(--bg);
+    opacity: 0.7;
+  }
+
+  .card-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .card-count {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+import data from '../data/alternatives.json';
+
+interface Link {
+  label: string;
+  url: string;
+}
+
+interface Alternative {
+  name: string;
+  url: string;
+  description: string;
+  links?: Link[];
+}
+
+interface Tool {
+  name: string;
+  slug: string;
+  category: string;
+  alternatives: Alternative[];
+}
+
+export function getStaticPaths() {
+  return data.proprietary.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props as { tool: Tool };
+
+// Find other proprietary tools that share any of the same alternatives
+const relatedTools = data.proprietary.filter((other) => {
+  if (other.slug === tool.slug) return false;
+  const currentNames = tool.alternatives.map((a) => a.name);
+  return other.alternatives.some((a) => currentNames.includes(a.name));
+});
+---
+
+<Layout title={`${tool.name} — Open Source Alternatives`}>
+  <div class="back">
+    <a href="/">← back</a>
+  </div>
+
+  <div class="header">
+    <h1>{tool.name}</h1>
+    <span class="category-tag">{tool.category}</span>
+  </div>
+
+  {relatedTools.length > 0 && (
+    <p class="related">
+      See also:
+      {relatedTools.map((r, i) => (
+        <>
+          <a href={`/${r.slug}`}>{r.name}</a>{i < relatedTools.length - 1 ? ', ' : ''}
+        </>
+      ))}
+    </p>
+  )}
+
+  <div class="alternatives">
+    {tool.alternatives.map((alt) => (
+      <article class="alt">
+        <div class="alt-header">
+          <h2>
+            <a href={alt.url} target="_blank" rel="noopener">{alt.name} ↗</a>
+          </h2>
+        </div>
+        <p class="alt-desc">{alt.description}</p>
+        {alt.links && alt.links.length > 0 && (
+          <div class="alt-links">
+            {alt.links.map((link, i) => (
+              <>
+                <a href={link.url} target="_blank" rel="noopener">[{link.label}]</a>{i < alt.links!.length - 1 ? ' ' : ''}
+              </>
+            ))}
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .back {
+    margin-bottom: 1.5rem;
+  }
+
+  .back a {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .category-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border: 1px solid var(--muted);
+    padding: 0.15em 0.5em;
+  }
+
+  .related {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .alternatives {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .alt {
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    margin-top: -1px;
+  }
+
+  .alt-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .alt-header h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .alt-header h2 a {
+    text-decoration: none;
+  }
+
+  .alt-header h2 a:hover {
+    color: var(--accent);
+  }
+
+  .alt-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 0.6rem;
+  }
+
+  .alt-links {
+    font-size: 0.8rem;
+  }
+
+  .alt-links a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .alt-links a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .alt {
+      padding: 1rem;
+    }
+  }
+</style>
