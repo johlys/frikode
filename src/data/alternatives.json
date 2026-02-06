@@ -154,8 +154,7 @@
             "slug": "google-drive",
             "category": "Skylagring",
             "alternatives": [
-                "Nextcloud",
-                "Syncthing"
+                "Nextcloud"
             ]
         },
         {
