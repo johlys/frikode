@@ -1,134 +1,141 @@
 ---
 interface Props {
-  title?: string;
+	title?: string;
 }
 const { title = "Open Source Alternatives" } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="A directory of open source alternatives to proprietary software." />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <header>
-      <a href="/" class="site-title">Alternativ til</a>
-      <nav>
-        <a href="https://github.com/johlys/frivare" target="_blank" rel="noopener">[GitHub]</a>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-		<p>
-			Dersom du ønsker å bidra kan du åpne en PR på github eller sende meg en epost.
-		</p>
-		<p>
-        	Kontakt: <code>example [at] email (dot) com</code>
-		</p>
-    </footer>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta
+			name="description"
+			content="A directory of open source alternatives to proprietary software."
+		/>
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header>
+			<a href="/" class="site-title">Alternativ til</a>
+			<nav>
+				<a
+					href="https://github.com/johlys/frivare"
+					target="_blank"
+					rel="noopener">[GitHub]</a
+				>
+			</nav>
+		</header>
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<p>
+				Dersom du ønsker å bidra kan du åpne en PR på github.
+			</p>
+		</footer>
+	</body>
 </html>
 
 <style is:global>
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+	*,
+	*::before,
+	*::after {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 
-  :root {
-    --fg: #1a1a1a;
-    --bg: #f5f2eb;
-    --border: #1a1a1a;
-    --muted: #6b6b6b;
-    --accent: #b5232a;
-    --code-bg: #e8e4dc;
-  }
+	:root {
+		--fg: #1a1a1a;
+		--bg: #f5f2eb;
+		--border: #1a1a1a;
+		--muted: #6b6b6b;
+		--accent: #b5232a;
+		--code-bg: #e8e4dc;
+	}
 
-  html {
-    font-size: 16px;
-  }
+	html {
+		font-size: 16px;
+	}
 
-  body {
-    font-family: "IBM Plex Mono", "Courier New", monospace;
-    background: var(--bg);
-    color: var(--fg);
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+	body {
+		font-family: "IBM Plex Mono", "Courier New", monospace;
+		background: var(--bg);
+		color: var(--fg);
+		line-height: 1.6;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
 
-  footer {
-	text-align: center;
-  }
+	footer {
+		text-align: center;
+	}
 
-  a {
-    color: var(--fg);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
+	a {
+		color: var(--fg);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
 
-  a:hover {
-    color: var(--accent);
-  }
+	a:hover {
+		color: var(--accent);
+	}
 
-  code {
-    background: var(--code-bg);
-    padding: 0.15em 0.4em;
-    font-size: 0.9em;
-    font-family: inherit;
-  }
+	code {
+		background: var(--code-bg);
+		padding: 0.15em 0.4em;
+		font-size: 0.9em;
+		font-family: inherit;
+	}
 
-  header {
-    padding: 1.5rem 2rem;
-    border-bottom: 2px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+	header {
+		padding: 1.5rem 2rem;
+		border-bottom: 2px solid var(--border);
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
 
-  .site-title {
-    font-size: 1rem;
-    font-weight: 700;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+	.site-title {
+		font-size: 1rem;
+		font-weight: 700;
+		text-decoration: none;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
 
-  nav a {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
+	nav a {
+		font-size: 0.85rem;
+		color: var(--muted);
+	}
 
-  main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 72rem;
-    width: 100%;
-    margin: 0 auto;
-  }
+	main {
+		flex: 1;
+		padding: 2rem;
+		max-width: 72rem;
+		width: 100%;
+		margin: 0 auto;
+	}
 
-  footer {
-    padding: 1.5rem 2rem;
-    border-top: 2px solid var(--border);
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
+	footer {
+		padding: 1.5rem 2rem;
+		border-top: 2px solid var(--border);
+		font-size: 0.8rem;
+		color: var(--muted);
+	}
 
-  @media (max-width: 600px) {
-    header, main, footer {
-      padding: 1rem;
-    }
-  }
+	@media (max-width: 600px) {
+		header,
+		main,
+		footer {
+			padding: 1rem;
+		}
+	}
 </style>

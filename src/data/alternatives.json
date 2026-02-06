@@ -1,206 +1,187 @@
 {
-  "proprietary": [
-    {
-      "name": "Spotify",
-      "slug": "spotify",
-      "category": "Musikk Streaming",
-      "alternatives": [
+    "alternatives": {
+        "Navidrome": {
+            "url": "https://www.navidrome.org/",
+            "description": "Self-hosted åpen kildekode musikkserver og strømmetjeneste som lar deg strømme din egen digitale musikksamling, omtrent som Spotify eller Apple Music.",
+            "links": [
+                {
+                    "label": "Kildekode",
+                    "url": "https://github.com/navidrome/navidrome"
+                }
+            ]
+        },
+        "Signal": {
+            "url": "https://signal.org/nb/",
+            "description": "Signal er en gratis, åpen kildekode-meldingsapp kjent for ekstremt høyt personvern og sikkerhet gjennom ende-til-ende-kryptering.",
+            "links": [
+                {
+                    "label": "Kildekode",
+                    "url": "https://github.com/signalapp"
+                }
+            ]
+        },
+        "Firefox": {
+            "url": "https://www.firefox.com/nb-NO/",
+            "description": "Uavhengig nettleser fra Mozilla.",
+            "links": []
+        },
+        "LibreWolf": {
+            "url": "https://librewolf.net/",
+            "description": "Firefox-fork med fokus på personvern, sikkerhet og frihet.",
+            "links": [
+                {
+                    "label": "Kildekode",
+                    "url": "https://codeberg.org/librewolf/website"
+                }
+            ]
+        },
+        "OpenStreetMap": {
+            "url": "https://www.openstreetmap.org/",
+            "description": "Verdenskart bygget av frivillige. Gratis å bruke og redigere. Brukes som grunnlag for mange andre kartverktøy.",
+            "links": []
+        },
+        "Nextcloud": {
+            "url": "https://nextcloud.com/",
+            "description": "Selvhostet plattform med filsynkronisering, kalender, kontakter, kontorpakke og mye mer.",
+            "links": [
+                {
+                    "label": "Kildekode",
+                    "url": "https://github.com/nextcloud"
+                }
+            ]
+        },
+        "LibreOffice": {
+            "url": "https://no.libreoffice.org/",
+            "description": "Komplett kontorpakke med tekstbehandler, regneark, presentasjoner og mer. Leser og skriver MS Office-formater.",
+            "links": []
+        },
+        "CryptPad": {
+            "url": "https://cryptpad.org/",
+            "description": "Ende-til-ende-kryptert samarbeidsplattform for dokumenter, regneark, presentasjoner og mer.",
+            "links": [
+                {
+                    "label": "Kildekode",
+                    "url": "https://github.com/cryptpad/cryptpad"
+                }
+            ]
+        },
+        "Mattermost": {
+            "url": "https://mattermost.com/",
+            "description": "Selvhostet teamchat med kanaler og tråder.",
+            "links": [
+                {
+                    "label": "Kildekode",
+                    "url": "https://github.com/mattermost/mattermost"
+                }
+            ]
+        },
+        "GIMP": {
+            "url": "https://www.gimp.org/",
+            "description": "Bilderedigeringsprogram med avanserte verktøy for fotoretusjering, komposisjon og bildebehandling.",
+            "links": []
+        }
+    },
+    "proprietary": [
         {
-          "name": "Navidrome",
-          "url": "https://www.navidrome.org",
-          "description": "Self-hosted music server compatible with Subsonic/Airsonic clients. Stream your own music collection from anywhere.",
-          "links": [
-            { "label": "Install guide", "url": "https://www.navidrome.org/docs/installation/" },
-            { "label": "GitHub", "url": "https://github.com/navidrome/navidrome" }
-          ]
+            "name": "Spotify",
+            "slug": "spotify",
+            "category": "Musikk Streaming",
+            "alternatives": [
+                "Navidrome"
+            ]
         },
         {
-          "name": "Funkwhale",
-          "url": "https://funkwhale.audio",
-          "description": "Federated music listening and sharing platform. Part of the Fediverse.",
-          "links": [
-            { "label": "Documentation", "url": "https://docs.funkwhale.audio" },
-            { "label": "GitLab", "url": "https://dev.funkwhale.audio/funkwhale/funkwhale" }
-          ]
+            "name": "Facebook Messenger",
+            "slug": "facebook-messenger",
+            "category": "Meldingstjenester",
+            "alternatives": [
+                "Signal"
+            ]
         },
         {
-          "name": "Nuclear",
-          "url": "https://nuclear.js.org",
-          "description": "Desktop music player that streams from free sources like YouTube, SoundCloud, and Bandcamp.",
-          "links": [
-            { "label": "Download", "url": "https://nuclear.js.org/downloads" },
-            { "label": "GitHub", "url": "https://github.com/nukeop/nuclear" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Facebook Messenger",
-      "slug": "facebook-messenger",
-      "category": "Meldingstjenester",
-      "alternatives": [
-        {
-          "name": "Signal",
-          "url": "https://signal.org",
-          "description": "End-to-end encrypted messaging. Widely regarded as the gold standard for private communication.",
-          "links": [
-            { "label": "Download", "url": "https://signal.org/download/" },
-            { "label": "GitHub", "url": "https://github.com/signalapp" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "WhatsApp",
-      "slug": "whatsapp",
-      "category": "Meldingstjenester",
-      "alternatives": [
-        {
-          "name": "Signal",
-          "url": "https://signal.org",
-          "description": "End-to-end encrypted messaging. Widely regarded as the gold standard for private communication.",
-          "links": [
-            { "label": "Download", "url": "https://signal.org/download/" },
-            { "label": "GitHub", "url": "https://github.com/signalapp" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Google Chrome",
-      "slug": "google-chrome",
-      "category": "Nettleser",
-      "alternatives": [
-        {
-          "name": "Firefox",
-          "url": "https://www.mozilla.org/firefox",
-          "description": "Independent browser from Mozilla. Strong privacy features, extensive add-on ecosystem.",
-          "links": [
-            { "label": "Download", "url": "https://www.mozilla.org/firefox/new/" }
-          ]
+            "name": "WhatsApp",
+            "slug": "whatsapp",
+            "category": "Meldingstjenester",
+            "alternatives": [
+                "Signal"
+            ]
         },
         {
-          "name": "LibreWolf",
-          "url": "https://librewolf.net",
-          "description": "Firefox fork focused on privacy, security, and freedom. Telemetry and DRM removed by default.",
-          "links": [
-            { "label": "Install", "url": "https://librewolf.net/installation/" },
-            { "label": "Codeberg", "url": "https://codeberg.org/librewolf" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Google Maps",
-      "slug": "google-maps",
-      "category": "Kart og Navigering",
-      "alternatives": [
-        {
-          "name": "OpenStreetMap",
-          "url": "https://www.openstreetmap.org",
-          "description": "Community-built map of the world. Free to use and edit. Powers many other open source map tools.",
-          "links": [
-            { "label": "Start mapping", "url": "https://www.openstreetmap.org/about" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Google Drive",
-      "slug": "google-drive",
-      "category": "Skylagring",
-      "alternatives": [
-        {
-          "name": "Nextcloud",
-          "url": "https://nextcloud.com",
-          "description": "Self-hosted productivity platform with file sync, calendar, contacts, office suite, and more.",
-          "links": [
-            { "label": "Install guide", "url": "https://nextcloud.com/install/" },
-            { "label": "GitHub", "url": "https://github.com/nextcloud/server" }
-          ]
+            "name": "Google Chrome",
+            "slug": "google-chrome",
+            "category": "Nettleser",
+            "alternatives": [
+                "Firefox",
+                "LibreWolf"
+            ]
         },
         {
-          "name": "Syncthing",
-          "url": "https://syncthing.net",
-          "description": "Continuous peer-to-peer file synchronization. No cloud, no accounts, no limits.",
-          "links": [
-            { "label": "Getting started", "url": "https://docs.syncthing.net/intro/getting-started.html" },
-            { "label": "GitHub", "url": "https://github.com/syncthing/syncthing" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "YouTube",
-      "slug": "youtube",
-      "category": "Video",
-      "alternatives": [
-        {
-          "name": "PeerTube",
-          "url": "https://joinpeertube.org",
-          "description": "Federated video hosting platform. Instances can interconnect. Uses peer-to-peer streaming to reduce server load.",
-          "links": [
-            { "label": "Find an instance", "url": "https://joinpeertube.org/instances" },
-            { "label": "GitHub", "url": "https://github.com/Chocobozzz/PeerTube" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Microsoft Office",
-      "slug": "microsoft-office",
-      "category": "Dokument- og redigeringsverktøy",
-      "alternatives": [
-        {
-          "name": "LibreOffice",
-          "url": "https://www.libreoffice.org",
-          "description": "Full-featured office suite. Writer, Calc, Impress, Draw, Base, and Math. Reads and writes MS Office formats.",
-          "links": [
-            { "label": "Download", "url": "https://www.libreoffice.org/download/download-libreoffice/" }
-          ]
+            "name": "Safari",
+            "slug": "safari",
+            "category": "Nettleser",
+            "alternatives": [
+                "Firefox",
+                "LibreWolf"
+            ]
         },
         {
-          "name": "CryptPad",
-          "url": "https://cryptpad.org",
-          "description": "End-to-end encrypted collaborative office suite. Documents, spreadsheets, presentations, and more.",
-          "links": [
-            { "label": "Try it", "url": "https://cryptpad.fr" },
-            { "label": "GitHub", "url": "https://github.com/cryptpad/cryptpad" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Slack",
-      "slug": "slack",
-      "category": "Teamchat",
-      "alternatives": [
+            "name": "Microsoft Edge",
+            "slug": "microsoft-edge",
+            "category": "Nettleser",
+            "alternatives": [
+                "Firefox",
+                "LibreWolf"
+            ]
+        },
         {
-          "name": "Mattermost",
-          "url": "https://mattermost.com",
-          "description": "Self-hosted team messaging with channels, threads, integrations, and playbooks.",
-          "links": [
-            { "label": "Install guide", "url": "https://docs.mattermost.com/guides/deployment.html" },
-            { "label": "GitHub", "url": "https://github.com/mattermost/mattermost" }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Adobe Photoshop",
-      "slug": "adobe-photoshop",
-      "category": "Bilderedigering",
-      "alternatives": [
+            "name": "Google Maps",
+            "slug": "google-maps",
+            "category": "Kart og Navigering",
+            "alternatives": [
+                "OpenStreetMap"
+            ]
+        },
         {
-          "name": "GIMP",
-          "url": "https://www.gimp.org",
-          "description": "Powerful image editor with advanced tools for photo retouching, composition, and image authoring.",
-          "links": [
-            { "label": "Download", "url": "https://www.gimp.org/downloads/" },
-            { "label": "Tutorials", "url": "https://www.gimp.org/tutorials/" }
-          ]
+            "name": "Apple Maps",
+            "slug": "apple-maps",
+            "category": "Kart og Navigering",
+            "alternatives": [
+                "OpenStreetMap"
+            ]
+        },
+        {
+            "name": "Google Drive",
+            "slug": "google-drive",
+            "category": "Skylagring",
+            "alternatives": [
+                "Nextcloud",
+                "Syncthing"
+            ]
+        },
+        {
+            "name": "Microsoft Office",
+            "slug": "microsoft-office",
+            "category": "Dokument- og redigeringsverktøy",
+            "alternatives": [
+                "LibreOffice",
+                "CryptPad"
+            ]
+        },
+        {
+            "name": "Slack",
+            "slug": "slack",
+            "category": "Teamchat",
+            "alternatives": [
+                "Mattermost"
+            ]
+        },
+        {
+            "name": "Adobe Photoshop",
+            "slug": "adobe-photoshop",
+            "category": "Bilderedigering",
+            "alternatives": [
+                "GIMP"
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

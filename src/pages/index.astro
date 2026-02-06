@@ -1,107 +1,113 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import data from '../data/alternatives.json';
+import Layout from "../layouts/Layout.astro";
+import data from "../data/alternatives.json";
 
 const tools = data.proprietary;
 
 const categories = tools.reduce((acc: Record<string, typeof tools>, tool) => {
-  if (!acc[tool.category]) acc[tool.category] = [];
-  acc[tool.category].push(tool);
-  return acc;
+	if (!acc[tool.category]) acc[tool.category] = [];
+	acc[tool.category].push(tool);
+	return acc;
 }, {});
 
 const sortedCategories = Object.keys(categories).sort();
 ---
 
-<Layout title="Open Source Alternatives">
-  <div class="intro">
-    <p>
-		Proprietær programvare du sannsynligvis bruker, og åpne kildekodealternativer du kan bruke i stedet.
-    </p>
-  </div>
+<Layout title="Åpne Alternativer">
+	<div class="intro">
+		<p>
+			Under ser du kjente apper og tjenester med lukket kildekode. Trykk
+			på en for å finne åpne alternativer.
+		</p>
+	</div>
 
-  {sortedCategories.map((category) => (
-    <section class="category">
-      <h2 class="category-label">{category}</h2>
-      <div class="grid">
-        {categories[category].map((tool) => (
-          <a href={`/${tool.slug}`} class="card">
-            <span class="card-name">{tool.name}</span>
-            <span class="card-count">{tool.alternatives.length} alternativ</span>
-          </a>
-        ))}
-      </div>
-    </section>
-  ))}
+	{
+		sortedCategories.map((category) => (
+			<section class="category">
+				<h2 class="category-label">{category}</h2>
+				<div class="grid">
+					{categories[category].map((tool) => (
+						<a href={`/${tool.slug}`} class="card">
+							<span class="card-name">{tool.name}</span>
+							<span class="card-count">
+								{tool.alternatives.length} alternativ
+								{tool.alternatives.length !== 1 ? "er" : ""}
+							</span>
+						</a>
+					))}
+				</div>
+			</section>
+		))
+	}
 </Layout>
 
 <style>
-  .intro {
-    margin-bottom: 2.5rem;
-    max-width: 42rem;
-  }
+	.intro {
+		margin-bottom: 2.5rem;
+		max-width: 42rem;
+	}
 
-  .intro p {
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
+	.intro p {
+		font-size: 0.95rem;
+		color: var(--muted);
+	}
 
-  .category {
-    margin-bottom: 2rem;
-  }
+	.category {
+		margin-bottom: 2rem;
+	}
 
-  .category-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.4rem;
-  }
+	.category-label {
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--muted);
+		margin-bottom: 0.75rem;
+		border-bottom: 1px solid var(--border);
+		padding-bottom: 0.4rem;
+	}
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-    gap: 0;
-  }
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+		gap: 0;
+	}
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 1.25rem;
-    border: 1px solid var(--border);
-    text-decoration: none;
-    transition: background 0.1s;
-    margin-top: -1px;
-    margin-left: -1px;
-  }
+	.card {
+		display: flex;
+		flex-direction: column;
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--border);
+		text-decoration: none;
+		transition: background 0.1s;
+		margin-top: -1px;
+		margin-left: -1px;
+	}
 
-  .card:hover {
-    background: var(--fg);
-    color: var(--bg);
-  }
+	.card:hover {
+		background: var(--fg);
+		color: var(--bg);
+	}
 
-  .card:hover .card-count {
-    color: var(--bg);
-    opacity: 0.7;
-  }
+	.card:hover .card-count {
+		color: var(--bg);
+		opacity: 0.7;
+	}
 
-  .card-name {
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
+	.card-name {
+		font-weight: 700;
+		font-size: 0.95rem;
+	}
 
-  .card-count {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 0.25rem;
-  }
+	.card-count {
+		font-size: 0.8rem;
+		color: var(--muted);
+		margin-top: 0.25rem;
+	}
 
-  @media (max-width: 600px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-  }
+	@media (max-width: 600px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>

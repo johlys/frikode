@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import data from '../data/alternatives.json';
+import Layout from "../layouts/Layout.astro";
+import data from "../data/alternatives.json";
 
 interface Link {
   label: string;
@@ -8,7 +8,6 @@ interface Link {
 }
 
 interface Alternative {
-  name: string;
   url: string;
   description: string;
   links?: Link[];
@@ -18,8 +17,10 @@ interface Tool {
   name: string;
   slug: string;
   category: string;
-  alternatives: Alternative[];
+  alternatives: string[];
 }
+
+const altMap = data.alternatives as Record<string, Alternative>;
 
 export function getStaticPaths() {
   return data.proprietary.map((tool) => ({
@@ -30,55 +31,67 @@ export function getStaticPaths() {
 
 const { tool } = Astro.props as { tool: Tool };
 
-// Find other proprietary tools that share any of the same alternatives
+const resolvedAlts = tool.alternatives
+  .filter((name) => altMap[name])
+  .map((name) => ({ name, ...altMap[name] }));
+
 const relatedTools = data.proprietary.filter((other) => {
   if (other.slug === tool.slug) return false;
-  const currentNames = tool.alternatives.map((a) => a.name);
-  return other.alternatives.some((a) => currentNames.includes(a.name));
+  return other.alternatives.some((name) => tool.alternatives.includes(name));
 });
 ---
 
-<Layout title={`${tool.name} — Open Source Alternatives`}>
+<Layout title={`Åpne alternativer til ${tool.name}`}>
   <div class="back">
-    <a href="/">← back</a>
+    <a href="/">← tilbake</a>
   </div>
 
   <div class="header">
-    <h1>{tool.name}</h1>
+    <h1>Åpne alternativer til {tool.name}</h1>
     <span class="category-tag">{tool.category}</span>
   </div>
 
-  {relatedTools.length > 0 && (
-    <p class="related">
-      See also:
-      {relatedTools.map((r, i) => (
-        <>
-          <a href={`/${r.slug}`}>{r.name}</a>{i < relatedTools.length - 1 ? ', ' : ''}
-        </>
-      ))}
-    </p>
-  )}
+  {
+    relatedTools.length > 0 && (
+      <p class="related">
+        Se også:
+        {relatedTools.map((r, i) => (
+          <>
+            <a href={`/${r.slug}`}>{r.name}</a>
+            {i < relatedTools.length - 1 ? ", " : ""}
+          </>
+        ))}
+      </p>
+    )
+  }
 
   <div class="alternatives">
-    {tool.alternatives.map((alt) => (
-      <article class="alt">
-        <div class="alt-header">
-          <h2>
-            <a href={alt.url} target="_blank" rel="noopener">{alt.name} ↗</a>
-          </h2>
-        </div>
-        <p class="alt-desc">{alt.description}</p>
-        {alt.links && alt.links.length > 0 && (
-          <div class="alt-links">
-            {alt.links.map((link, i) => (
-              <>
-                <a href={link.url} target="_blank" rel="noopener">[{link.label}]</a>{i < alt.links!.length - 1 ? ' ' : ''}
-              </>
-            ))}
+    {
+      resolvedAlts.map((alt) => (
+        <article class="alt">
+          <div class="alt-header">
+            <h2>
+              <a href={alt.url} target="_blank" rel="noopener">
+                {alt.name} ↗
+              </a>
+            </h2>
           </div>
-        )}
-      </article>
-    ))}
+          <p class="alt-desc">{alt.description}</p>
+          {alt.links && alt.links.length > 0 && (
+            <div class="alt-links">
+              {alt.links.map((link, i) => (
+                <>
+                  <a href={link.url} target="_blank" rel="noopener">
+                    [{link.label}]
+                  </a>
+                  {i < alt.links!.length - 1 ? " " : ""}
+                </>
+              ))}
+            </div>
+          )}
+        </article>
+      ))
+    }
   </div>
 </Layout>
 
