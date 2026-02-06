@@ -5,4 +5,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     site: 'https://johlys.github.io',
     base: '/frikode',
+    trailingSlash: 'always',
 });
